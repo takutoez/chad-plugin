@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "chad": {
+      "serverUrl": "https://api.chadapp.link/mcp"
+    }
+  }
+}

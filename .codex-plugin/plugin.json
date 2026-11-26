@@ -1,0 +1,39 @@
+{
+  "name": "chad",
+  "version": "1.0.0",
+  "description": "C.H.A.D. shows your iPhone what each Codex session is doing and notifies you when it finishes or needs your input.",
+  "author": {
+    "name": "Takt Mugruma",
+    "url": "https://chadapp.link/en"
+  },
+  "homepage": "https://chadapp.link/en",
+  "repository": "https://github.com/takutoez/chad-plugin",
+  "license": "MIT",
+  "keywords": [
+    "notifications",
+    "iphone",
+    "push",
+    "mcp",
+    "status"
+  ],
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "C.H.A.D.",
+    "shortDescription": "Session updates on your iPhone",
+    "longDescription": "C.H.A.D. shows your iPhone what each Codex session is doing, and sends a push notification when a task finishes or stops to wait for your answer. Requires the C.H.A.D. iPhone app; sign in with the same Apple ID.",
+    "developerName": "Takt Mugruma",
+    "category": "Productivity",
+    "capabilities": [],
+    "websiteURL": "https://chadapp.link/en",
+    "supportURL": "https://github.com/takutoez/chad-plugin/issues",
+    "privacyPolicyURL": "https://chadapp.link/en/privacy",
+    "termsOfServiceURL": "https://chadapp.link/en/terms",
+    "defaultPrompt": [
+      "Work on this task and notify my phone when you finish or need my input"
+    ],
+    "brandColor": "#925E3C",
+    "logo": "./assets/logo.png",
+    "composerIcon": "./assets/composer-icon.png",
+    "screenshots": []
+  }
+}

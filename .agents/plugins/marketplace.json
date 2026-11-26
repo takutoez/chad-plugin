@@ -1,0 +1,20 @@
+{
+  "name": "chad-marketplace",
+  "interface": {
+    "displayName": "C.H.A.D."
+  },
+  "plugins": [
+    {
+      "name": "chad",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

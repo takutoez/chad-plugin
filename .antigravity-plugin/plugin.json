@@ -1,0 +1,25 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "chad",
+  "displayName": "C.H.A.D.",
+  "description": "Shows your iPhone what each Antigravity session is doing, and sends a push notification when a task finishes or stops to wait for your answer.",
+  "version": "1.0.0",
+  "logo": "./assets/logo.png",
+  "suggestedPrompts": [
+    "Work on this task and notify my phone when you finish or need my input"
+  ],
+  "author": {
+    "name": "Takt Mugruma",
+    "url": "https://chadapp.link/en"
+  },
+  "homepage": "https://chadapp.link/en",
+  "repository": "https://github.com/takutoez/chad-plugin",
+  "license": "MIT",
+  "keywords": [
+    "notifications",
+    "iphone",
+    "push",
+    "mcp",
+    "status"
+  ]
+}
