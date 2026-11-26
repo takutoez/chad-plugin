@@ -20,7 +20,7 @@ Then run `/mcp`, choose **chad**, and sign in with the **same Apple ID** you use
 
 ## What is sent
 
-Each call sends a short task name, a one-sentence summary, the status, the agent name ("Claude Code"), and the project (repository or folder) name. Claude is told to keep these short and to leave out secrets and code. No source code, files, or conversation history is sent. The server keeps an update only until the app receives it. See the privacy policy in the app's settings for details.
+Each call sends a short task name, a one-sentence summary, the status, the agent name ("Claude Code"), and the project (repository or folder) name. Claude is told to keep these short and to leave out secrets and code. No source code, files, or conversation history is sent. The server keeps an update only until the app receives it. See the [Privacy Policy](https://chadapp.link/en/privacy) for details.
 
 ## Uninstall
 
@@ -40,4 +40,4 @@ C.H.A.D. は、Claude Code の各セッションがいま何をしているか�
 2. Claude Code で `/plugin marketplace add takutoez/chad-plugin` → `/plugin install chad@chad-marketplace` を実行する。
 3. `/mcp` で **chad** を選び、アプリと**同じ Apple ID** でサインインする。
 
-送るのは、作業名・一言の要約・状態・AI の名前・プロジェクト（リポジトリやフォルダ）の名前だけです。ソースコードやファイル、会話の履歴は送りません。
+送るのは、作業名・一言の要約・状態・AI の名前・プロジェクト（リポジトリやフォルダ）の名前だけです。ソースコードやファイル、会話の履歴は送りません。詳しくは[プライバシーポリシー](https://chadapp.link/privacy)をご覧ください。

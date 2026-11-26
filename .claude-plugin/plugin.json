@@ -5,7 +5,15 @@
   "author": {
     "name": "takutoez"
   },
+  "homepage": "https://chadapp.link/en",
   "repository": "https://github.com/takutoez/chad-plugin",
   "license": "MIT",
-  "keywords": ["notifications", "iphone", "push", "mcp", "status"]
+  "privacyPolicyUrl": "https://chadapp.link/en/privacy",
+  "keywords": [
+    "notifications",
+    "iphone",
+    "push",
+    "mcp",
+    "status"
+  ]
 }
