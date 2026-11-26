@@ -31,11 +31,19 @@ In the Codex app, you can also add the marketplace and install **C.H.A.D.** from
 
 ## Antigravity
 
+With the `agy` CLI:
+
 ```
 agy plugin install https://github.com/takutoez/chad-plugin
 ```
 
-Then open the MCP servers, choose **chad**, and click **Authenticate**.
+With the Antigravity app only (no CLI), put this repository in the global plugins folder and restart the app:
+
+```
+git clone https://github.com/takutoez/chad-plugin ~/.gemini/config/plugins/chad
+```
+
+Then open **Customizations** → **Installed**, and under **MCP Servers** click **Authenticate** next to **chad**. Sign in in the browser, copy the authorization code, paste it into **Enter authorization code**, and click **Submit**. To update later, run `git -C ~/.gemini/config/plugins/chad pull`.
 
 ## What is sent
 
@@ -45,7 +53,7 @@ Each call sends a short task name, a one-sentence summary, the status, the agent
 
 - Claude Code: `/plugin uninstall chad@chad-marketplace`
 - Codex: `codex plugin remove chad@chad-marketplace`
-- Antigravity: `agy plugin uninstall chad`
+- Antigravity: `agy plugin uninstall chad`, or delete `~/.gemini/config/plugins/chad` if you cloned it
 
 To stop notifications from every AI app, turn off the connection in the C.H.A.D. app.
 
@@ -68,7 +76,7 @@ C.H.A.D. は、AI のコーディング（Claude Code・Codex・Antigravity）�
 2. 使っている AI に、プラグインを入れる。
    - Claude Code: `/plugin marketplace add takutoez/chad-plugin` → `/plugin install chad@chad-marketplace` → `/mcp` で **chad** を選ぶ。
    - Codex: `codex plugin marketplace add takutoez/chad-plugin` → `codex plugin add chad@chad-marketplace` → `codex mcp login chad`。
-   - Antigravity: `agy plugin install https://github.com/takutoez/chad-plugin` → MCP サーバーの **chad** で **Authenticate**。
+   - Antigravity: `agy plugin install https://github.com/takutoez/chad-plugin`。CLI が無ければ `git clone https://github.com/takutoez/chad-plugin ~/.gemini/config/plugins/chad` をしてアプリを開き直す。どちらも、そのあと **Customizations** → **Installed** → MCP Servers の **chad** で **Authenticate** を押し、ブラウザに出たコードを貼る。
 3. サインインの画面で、アプリと**同じ Apple ID** でサインインする。
 
 送るのは、作業名・一言の要約・状態・AI の名前・プロジェクト（リポジトリやフォルダ）の名前だけです。ソースコードやファイル、会話の履歴は送りません。詳しくは[プライバシーポリシー](https://chadapp.link/privacy)をご覧ください。
