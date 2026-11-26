@@ -1,0 +1,62 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "mcp_tool",
+            "server": "chad",
+            "tool": "notify_user",
+            "input": {
+              "status": "working",
+              "task": "",
+              "agent": "Codex",
+              "project": "${cwd}",
+              "source": "hook"
+            },
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "mcp_tool",
+            "server": "chad",
+            "tool": "notify_user",
+            "input": {
+              "status": "done",
+              "task": "",
+              "agent": "Codex",
+              "project": "${cwd}",
+              "source": "hook"
+            },
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "mcp_tool",
+            "server": "chad",
+            "tool": "notify_user",
+            "input": {
+              "status": "needs_input",
+              "task": "",
+              "agent": "Codex",
+              "project": "${cwd}",
+              "source": "hook",
+              "summary": "${tool_input.description}"
+            },
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

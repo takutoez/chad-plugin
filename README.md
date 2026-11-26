@@ -2,7 +2,12 @@
 
 C.H.A.D. shows your iPhone what each of your AI coding sessions is doing, and sends you a push notification when a session finishes or stops to wait for your answer. Start a task, switch to something else, and come back when your phone tells you it is done.
 
-This plugin connects your coding agent to the C.H.A.D. server (`https://api.chadapp.link/mcp`). It adds one tool, `notify_user`, which the agent calls at the start of a turn ("working") and at the end ("done" or "needs input"). The same repository works as a plugin for Claude Code, Codex, and Google Antigravity.
+This plugin connects your coding agent to the C.H.A.D. server (`https://api.chadapp.link/mcp`). Updates reach the server in two ways, and both are first-class:
+
+- **The agent itself** calls the `notify_user` tool at the start of a turn ("working") and at the end ("done" or "needs input"), with a short task name and summary.
+- **Hooks** (Claude Code and Codex) call the same tool when you send a prompt, when the agent stops, and when it waits for your permission. They fire even when the agent forgets to call the tool or is blocked on a permission prompt. Hooks send no conversation text, only the status, the agent's name, and the folder you are working in.
+
+Hooks use the same MCP connection as the agent, so the server knows which updates come from the same session. When both report the same moment, you get one notification, and the agent's task name and summary fill in the hook's update. The same repository works as a plugin for Claude Code, Codex, and Google Antigravity.
 
 ## Requirements
 
@@ -17,7 +22,7 @@ This plugin connects your coding agent to the C.H.A.D. server (`https://api.chad
 /plugin install chad@chad-marketplace
 ```
 
-Then run `/mcp`, choose **chad**, and sign in.
+Then run `/mcp`, choose **chad**, and sign in. The hooks start working once **chad** is signed in (hooks never start a sign-in themselves).
 
 ## Codex
 
@@ -28,6 +33,8 @@ codex mcp login chad
 ```
 
 In the Codex app, you can also add the marketplace and install **C.H.A.D.** from the plugin directory.
+
+To use the hooks, open `/hooks` in the CLI (or **Settings → Hooks** in the app), review the **chad** hooks, and trust them. Hooks need a recent Codex: tested with 0.172. Older versions such as 0.145 print a warning that they can't parse the hooks and fall back to the updates the agent sends itself.
 
 ## Antigravity
 
@@ -47,7 +54,7 @@ Then open **Customizations** → **Installed**, and under **MCP Servers** click 
 
 ## What is sent
 
-Each call sends a short task name, a one-sentence summary, the status, the agent name (for example "Claude Code"), and the project (repository or folder) name. The agent is told to keep these short and to leave out secrets and code. No source code, files, or conversation history is sent. The server keeps an update only until the app receives it. See the [Privacy Policy](https://chadapp.link/en/privacy) for details.
+Each call sends a short task name, a one-sentence summary, the status, the agent name (for example "Claude Code"), and the project (repository or folder) name. Hook calls send no task name; their summary is the agent's own fixed notice, such as "Claude needs your permission to use Bash". Hooks pass the working folder's path, and the server keeps only its last part (the folder name). The agent is told to keep these short and to leave out secrets and code. No source code, files, or conversation history is sent. The server keeps an update only until the app receives it. See the [Privacy Policy](https://chadapp.link/en/privacy) for details.
 
 ## Uninstall
 
@@ -61,8 +68,8 @@ To stop notifications from every AI app, turn off the connection in the C.H.A.D.
 
 | Path | Used by |
 | --- | --- |
-| `.claude-plugin/`, `.mcp.json` | Claude Code |
-| `.codex-plugin/`, `.agents/plugins/marketplace.json`, `.mcp.json` | Codex |
+| `.claude-plugin/`, `.mcp.json`, `hooks/hooks.json` | Claude Code |
+| `.codex-plugin/`, `.agents/plugins/marketplace.json`, `.mcp.json`, `hooks/codex.json` | Codex |
 | `.antigravity-plugin/`, `mcp_config.json`, `rules/AGENTS.md` | Antigravity |
 | `assets/` | Codex and Antigravity (logo) |
 
@@ -73,9 +80,9 @@ To stop notifications from every AI app, turn off the connection in the C.H.A.D.
 C.H.A.D. は、AI のコーディング（Claude Code・Codex・Antigravity）の各セッションがいま何をしているかを iPhone に出し、作業が終わったときや返事を待って止まったときにプッシュ通知で知らせます。
 
 1. iPhone の C.H.A.D. で「Apple でサインイン」をし、設定の「AI とつなぐ」で連携をオンにする。
-2. 使っている AI に、プラグインを入れる。
+2. 使っている AI に、プラグインを入れる。Claude Code と Codex では、AI が自分で送る知らせに加えて、フックがプロンプトを送ったとき・止まったとき・許可を待つときに必ず知らせます（同じ場面は 1 回の通知にまとめます。フックは会話の文面を送りません）。
    - Claude Code: `/plugin marketplace add takutoez/chad-plugin` → `/plugin install chad@chad-marketplace` → `/mcp` で **chad** を選ぶ。
-   - Codex: `codex plugin marketplace add takutoez/chad-plugin` → `codex plugin add chad@chad-marketplace` → `codex mcp login chad`。
+   - Codex: `codex plugin marketplace add takutoez/chad-plugin` → `codex plugin add chad@chad-marketplace` → `codex mcp login chad`。フックを使うには、`/hooks`（アプリでは「設定 → Hooks」）で chad のフックを信頼する（0.172 で確認）。
    - Antigravity: `agy plugin install https://github.com/takutoez/chad-plugin`。CLI が無ければ `git clone https://github.com/takutoez/chad-plugin ~/.gemini/config/plugins/chad` をしてアプリを開き直す。どちらも、そのあと **Customizations** → **Installed** → MCP Servers の **chad** で **Authenticate** を押し、ブラウザに出たコードを貼る。
 3. サインインの画面で、アプリと**同じ Apple ID** でサインインする。
 

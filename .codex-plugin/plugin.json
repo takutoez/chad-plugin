@@ -1,6 +1,6 @@
 {
   "name": "chad",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "C.H.A.D. shows your iPhone what each Codex session is doing and notifies you when it finishes or needs your input.",
   "author": {
     "name": "Takt Mugruma",
@@ -17,6 +17,7 @@
     "status"
   ],
   "mcpServers": "./.mcp.json",
+  "hooks": "./hooks/codex.json",
   "interface": {
     "displayName": "C.H.A.D.",
     "shortDescription": "Session updates on your iPhone",

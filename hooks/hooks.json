@@ -1,0 +1,84 @@
+{
+  "description": "C.H.A.D.: tell your iPhone when Claude Code starts, stops, or waits for permission, even if Claude forgets to call notify_user. Sends no conversation text.",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "mcp_tool",
+            "server": "plugin:chad:chad",
+            "tool": "notify_user",
+            "input": {
+              "status": "working",
+              "task": "",
+              "agent": "Claude Code",
+              "project": "${cwd}",
+              "source": "hook"
+            },
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "mcp_tool",
+            "server": "plugin:chad:chad",
+            "tool": "notify_user",
+            "input": {
+              "status": "done",
+              "task": "",
+              "agent": "Claude Code",
+              "project": "${cwd}",
+              "source": "hook"
+            },
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          {
+            "type": "mcp_tool",
+            "server": "plugin:chad:chad",
+            "tool": "notify_user",
+            "input": {
+              "status": "needs_input",
+              "task": "",
+              "agent": "Claude Code",
+              "project": "${cwd}",
+              "source": "hook",
+              "summary": "${last_assistant_message}"
+            },
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "permission_prompt|elicitation_dialog|elicitation_url_dialog",
+        "hooks": [
+          {
+            "type": "mcp_tool",
+            "server": "plugin:chad:chad",
+            "tool": "notify_user",
+            "input": {
+              "status": "needs_input",
+              "task": "",
+              "agent": "Claude Code",
+              "project": "${cwd}",
+              "source": "hook",
+              "summary": "${message}"
+            },
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
