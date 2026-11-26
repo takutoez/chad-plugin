@@ -1,0 +1,11 @@
+{
+  "name": "chad",
+  "version": "1.0.0",
+  "description": "C.H.A.D. shows your iPhone what each Claude Code session is doing and notifies you when it finishes or needs your input.",
+  "author": {
+    "name": "takutoez"
+  },
+  "repository": "https://github.com/takutoez/chad-plugin",
+  "license": "MIT",
+  "keywords": ["notifications", "iphone", "push", "mcp", "status"]
+}

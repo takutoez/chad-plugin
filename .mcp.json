@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "chad": {
+      "type": "http",
+      "url": "https://api.chadapp.link/mcp"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "chad-marketplace",
+  "owner": {
+    "name": "takutoez"
+  },
+  "description": "C.H.A.D.: iPhone notifications for Claude Code sessions.",
+  "plugins": [
+    {
+      "name": "chad",
+      "source": "./",
+      "description": "Get notified on your iPhone when Claude Code finishes or needs your input."
+    }
+  ]
+}
