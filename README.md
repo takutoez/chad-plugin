@@ -6,6 +6,7 @@ This plugin connects your coding agent to the C.H.A.D. server (`https://api.chad
 
 - **The agent itself** calls the `notify_user` tool at the start of a turn ("working") and at the end ("done" or "needs input"), with a short task name and summary.
 - **Hooks** (Claude Code and Codex) call the same tool when you send a prompt, when the agent stops, and when it waits for your permission. They fire even when the agent forgets to call the tool or is blocked on a permission prompt. Hooks send no conversation text, only the status, the agent's name, and the folder you are working in.
+- **Continue on your phone** (Claude Code). While [Remote Control](https://code.claude.com/docs/en/remote-control) is connected, a hook tells Claude the session's link (`https://claude.ai/code/session_…`) each time you send a prompt, and Claude passes it along with its updates. The app then shows a **Continue in Claude** button that opens the same session in the Claude app. Needs Claude Code 2.1.199 or later.
 
 Hooks use the same MCP connection as the agent, so the server knows which updates come from the same session. When both report the same moment, you get one notification, and the agent's task name and summary fill in the hook's update. The same repository works as a plugin for Claude Code, Codex, and Google Antigravity.
 
@@ -54,7 +55,7 @@ Then open **Customizations** → **Installed**, and under **MCP Servers** click 
 
 ## What is sent
 
-Each call sends a short task name, a one-sentence summary, the status, the agent name (for example "Claude Code"), and the project (repository or folder) name. Hook calls send no task name; their summary is the agent's own fixed notice, such as "Claude needs your permission to use Bash". Hooks pass the working folder's path, and the server keeps only its last part (the folder name). The agent is told to keep these short and to leave out secrets and code. No source code, files, or conversation history is sent. The server keeps an update only until the app receives it. See the [Privacy Policy](https://chadapp.link/en/privacy) for details.
+Each call sends a short task name, a one-sentence summary, the status, the agent name (for example "Claude Code"), and the project (repository or folder) name. Hook calls send no task name; their summary is the agent's own fixed notice, such as "Claude needs your permission to use Bash". Hooks pass the working folder's path, and the server keeps only its last part (the folder name). The agent is told to keep these short and to leave out secrets and code. With Remote Control connected, Claude Code also sends the session's `claude.ai/code` link, so the app can reopen that session in the Claude app. No source code, files, or conversation history is sent. The server keeps an update only until the app receives it. See the [Privacy Policy](https://chadapp.link/en/privacy) for details.
 
 ## Uninstall
 
@@ -86,4 +87,4 @@ C.H.A.D. は、AI のコーディング（Claude Code・Codex・Antigravity）�
    - Antigravity: `agy plugin install https://github.com/takutoez/chad-plugin`。CLI が無ければ `git clone https://github.com/takutoez/chad-plugin ~/.gemini/config/plugins/chad` をしてアプリを開き直す。どちらも、そのあと **Customizations** → **Installed** → MCP Servers の **chad** で **Authenticate** を押し、ブラウザに出たコードを貼る。
 3. サインインの画面で、アプリと**同じ Apple ID** でサインインする。
 
-送るのは、作業名・一言の要約・状態・AI の名前・プロジェクト（リポジトリやフォルダ）の名前だけです。ソースコードやファイル、会話の履歴は送りません。詳しくは[プライバシーポリシー](https://chadapp.link/privacy)をご覧ください。
+送るのは、作業名・一言の要約・状態・AI の名前・プロジェクト（リポジトリやフォルダ）の名前です。Claude Code でリモートコントロールがつながっているあいだは、そのセッションのリンク（`https://claude.ai/code/session_…`）も送ります（アプリの「Claude で続きを開く」で、Claude アプリの同じセッションを開くため。Claude Code 2.1.199 以降）。ソースコードやファイル、会話の履歴は送りません。詳しくは[プライバシーポリシー](https://chadapp.link/privacy)をご覧ください。

@@ -1,5 +1,5 @@
 {
-  "description": "C.H.A.D.: tell your iPhone when Claude Code starts, stops, or waits for permission, even if Claude forgets to call notify_user. Sends no conversation text.",
+  "description": "C.H.A.D.: tell your iPhone when Claude Code starts, stops, or waits for permission, even if Claude forgets to call notify_user. Sends no conversation text. With Remote Control connected, also tells Claude the session's link so the app can reopen it in the Claude app.",
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -16,6 +16,11 @@
               "source": "hook"
             },
             "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "id=\"${CLAUDE_CODE_BRIDGE_SESSION_ID:-$CLAUDE_CODE_REMOTE_SESSION_ID}\"; case \"$id\" in session_*) printf 'C.H.A.D.: pass link \"https://claude.ai/code/%s\" in notify_user calls (it reopens this session on the phone).\\n' \"$id\";; esac; exit 0",
+            "timeout": 5
           }
         ]
       }
